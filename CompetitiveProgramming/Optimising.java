@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 public class Optimising {
    public static void main(String args[] ) throws Exception {
@@ -21,6 +20,7 @@ public class Optimising {
         }
         
         System.out.println(maxTeams);
+        scanner.close();
    }     
    public static int countTeams(int[] weights, int s) {
         int count = 0;
@@ -40,7 +40,4 @@ public class Optimising {
         
         return count;
     }
-}
- {
-    
 }

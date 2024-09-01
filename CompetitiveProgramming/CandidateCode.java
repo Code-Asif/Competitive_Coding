@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 public class CandidateCode {
    public static void main(String args[] ) throws Exception {
@@ -28,5 +27,6 @@ public class CandidateCode {
          System.out.println(paul);
       }
    }    
+   sc.close();
 }
 }
