@@ -12,6 +12,7 @@ public class Recursion1 {
         System.out.println("Number of digit: "+ ((int)Math.log10(1234)+1));
         int arr[] = {4, 5, 6, 11, 21};
         System.out.println(SortedOrNot(arr, 0));
+        System.out.println(Search(arr, 21, 0));
     }
     public static int PrintNto1(int n){
         if(n==0)return 0;
@@ -49,5 +50,9 @@ public class Recursion1 {
     public static boolean SortedOrNot(int arr[], int i){
         if(i==arr.length-1)return true;
         else return (arr[i]<arr[i+1] && SortedOrNot(arr, i+1));
+    }
+    public static boolean Search(int arr[], int key, int index){
+        if(index == arr.length) return false;
+        return arr[index] == key || Search(arr, key, index+1);
     }
 }
