@@ -1,8 +1,8 @@
 #include<stdio.h>
 
-int main(){
-    int p[] = {10, 5, 12, 20, 3};
-    int w[] = {3, 14, 2, 10, 1};
+void main(){
+    float p[] = {10, 5, 12, 20, 3};
+    float w[] = {3, 14, 2, 10, 1};
     int n = 5;
     float x[n];
     int M = 20;
@@ -65,5 +65,4 @@ int main(){
     printf("Total Weight: %d\n", totalW);
     printf("Total Profit (Optimal Solution): %d\n", totalP);
 
-    return 0;
 }
