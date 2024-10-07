@@ -54,5 +54,23 @@ void makingChange(int n, int d[], int a){
         for(int j=0; j<a; j++){
             printf("%5d", c[i][j]);
         }
+        printf("\n");
     }
+    int j=a;
+    int i=n;
+
+    while(j>0){
+        if(c[i][j] == c[i-1][j])i--;
+        else{
+            s[t] = d[i];
+            t++;
+            j = a-d[i];
+            a = a-d[i];
+        }
+    }
+    printf("\nCoins used: ");
+    for(int i=0; i<t; i++){
+        printf("%5d", s[i]);
+    }
+    printf("\n");
 }
