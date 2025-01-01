@@ -62,6 +62,6 @@ public class SmallestMultiple {
         int n = 3; // Example input
         // System.out.println("Smallest multiple of " + n + " with only digits 0 and 1: " + findSmallestMultiple(n));
         // System.out.println(multipleOfNum(n));
-        System.out.println(~(10));
+        System.out.println(~(n));
     }
 }

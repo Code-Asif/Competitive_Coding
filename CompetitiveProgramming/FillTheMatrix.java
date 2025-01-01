@@ -59,6 +59,6 @@ public class FillTheMatrix {
         // fillVerticalUsingFormula();
         System.out.println(Math.pow(17, 77)%35);
         System.out.println(Integer.MAX_VALUE%35);
-        System.out.println(Math.pow(17, 77))
+        System.out.println(Math.pow(17, 77));
     }
 }
