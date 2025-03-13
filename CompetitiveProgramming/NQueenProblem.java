@@ -20,7 +20,7 @@ class NQueenProblem {
     }
     private boolean isSafe(int row,int col,int N){
         for(int i=0;i<col;i++){
-            if(board[row][i]==1){
+            if(board[row][i] == 1){
                 return false;
             }
         }
