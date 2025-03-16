@@ -3,10 +3,10 @@ import java.util.Stack;
 import java.util.Collections;
 
 class Pair{
-	int val;
+	int value;
 	int index;
-	Pair(int val,int index){
-		this.val=val;
+	Pair(int value,int index){
+		this.value=value;
 		this.index=index;
 	}
 }
@@ -29,8 +29,10 @@ public class CustomStack {
         // smallerToRight(arr);
         // System.out.println();
         // smallerToRightUsingStack(arr);
-        int arr[] = {100,80,60,70,60,75,85};
-        stockSpan(arr);
+        // int arr[] = {100,80,60,70,60,75,85};
+        // stockSpan(arr);
+        int arr[] = {60, 20, 50, 40, 10, 50, 60};
+        getMaxArea(arr);
     }
 
     // 1st Brute Force
@@ -227,9 +229,9 @@ public class CustomStack {
         ArrayList<Integer> ans = new ArrayList<>();
         for(int i=0; i<arr.length; i++){
             if(st.isEmpty())ans.add(-1);
-            else if(st.size() > 0 && st.peek().val > arr[i]) ans.add(st.peek().index);
-            else if(st.size() > 0 && st.peek().val <= arr[i]) {
-                while(st.size() > 0 && st.peek().val <= arr[i]){
+            else if(st.size() > 0 && st.peek().value > arr[i]) ans.add(st.peek().index);
+            else if(st.size() > 0 && st.peek().value <= arr[i]) {
+                while(st.size() > 0 && st.peek().value <= arr[i]){
                     st.pop();
                 }
                 if(st.isEmpty())ans.add(-1);
@@ -243,5 +245,71 @@ public class CustomStack {
         for(int i=0; i<ans.size(); i++){
             System.out.print(ans.get(i)+" ");
         }
+    }
+
+    public static void getMaxArea(int arr[]) {
+        // your code here
+        // NSR
+        ArrayList<Integer> nsr = new ArrayList<>();
+        Stack<Pair> st1 = new Stack<>();
+        
+        for(int i=arr.length-1; i>=0; i--){
+            if(st1.isEmpty())nsr.add(arr.length);
+            else if(st1.size() > 0 && st1.peek().value < arr[i])nsr.add(st1.peek().index);
+            else if(st1.size() > 0 && st1.peek().value >= arr[i]){
+                while(st1.size() > 0 && st1.peek().value >= arr[i]){
+                    st1.pop();
+                }
+                if(st1.isEmpty())nsr.add(arr.length);
+                else nsr.add(st1.peek().index);
+            }
+            st1.push(new Pair(arr[i], i));
+        }
+        Collections.reverse(nsr);
+        // Print NSR
+        // System.out.println("NSR...");
+        // for(int i=0; i<nsr.size(); i++){
+        //     System.out.print(nsr.get(i)+" ");
+        // }
+        
+        // NSL
+        ArrayList<Integer> nsl = new ArrayList<>();
+        Stack<Pair> st2 = new Stack<>();
+        
+        for(int i=0; i<arr.length; i++){
+            if(st2.isEmpty())nsl.add(-1);
+            else if(st2.size() > 0 && st2.peek().value < arr[i])nsl.add(st2.peek().index);
+            else if(st2.size() > 0 && st2.peek().value >= arr[i]){
+                while(st2.size() > 0 && st2.peek().value >= arr[i]){
+                    st2.pop();
+                }
+                if(st2.isEmpty())nsl.add(-1);
+                else nsl.add(st2.peek().index);
+            }
+            st2.push(new Pair(arr[i], i));
+        }
+
+        // Print NSL
+        // System.out.println("\nNSL...");
+        // for(int i=0; i<nsl.size(); i++){
+        //     System.out.print(nsl.get(i)+" ");
+        // }
+        
+        ArrayList<Integer> width = new ArrayList<>();
+        for(int i=0; i<nsr.size(); i++){
+            width.add(nsr.get(i)-nsl.get(i)-1);
+        }
+        
+        ArrayList<Integer> area = new ArrayList<>();
+        for(int i=0; i<width.size(); i++){
+            area.add(arr[i]*width.get(i));
+        }
+        
+        int temp = area.get(0);
+        for(int i=1; i<area.size(); i++){
+            temp = Math.max(temp, area.get(i));
+        }
+        System.out.println(temp);
+        // return temp;
     }
 }
