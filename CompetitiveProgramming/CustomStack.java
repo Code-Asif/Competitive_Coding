@@ -31,8 +31,8 @@ public class CustomStack {
         // smallerToRightUsingStack(arr);
         // int arr[] = {100,80,60,70,60,75,85};
         // stockSpan(arr);
-        int arr[] = {60, 20, 50, 40, 10, 50, 60};
-        getMaxArea(arr);
+        int arr[] = {2,1,5,6,2,3};
+        System.out.println(getMaxArea(arr));
     }
 
     // 1st Brute Force
@@ -83,6 +83,7 @@ public class CustomStack {
         System.out.println("Greater to right using Stack...");
         ArrayList<Integer> ans = new ArrayList<>();
         Stack<Integer> st = new Stack<Integer>();
+
         for(int i=arr.length-1; i>=0; i--){
             if(st.isEmpty())ans.add(-1);
             else if(st.size()>0 && st.peek() > arr[i])ans.add(st.peek());
@@ -108,7 +109,7 @@ public class CustomStack {
         
         ArrayList<Integer> ans = new ArrayList<>();
         Stack<Integer> st = new Stack<Integer>();
-        // 1, 3, 2, 4
+
         for(int i=0; i<arr.length; i++){
             if(st.isEmpty())ans.add(-1);
             else if(st.size() > 0 && st.peek() > arr[i])ans.add(st.peek());
@@ -217,6 +218,7 @@ public class CustomStack {
         }
 
         Collections.reverse(ans);
+
         for(int i=0; i<ans.size(); i++){
             System.out.print(ans.get(i)+" ");
         }
@@ -227,6 +229,7 @@ public class CustomStack {
         System.out.println("Stock Span Problem...");
         Stack<Pair> st = new Stack<>();
         ArrayList<Integer> ans = new ArrayList<>();
+
         for(int i=0; i<arr.length; i++){
             if(st.isEmpty())ans.add(-1);
             else if(st.size() > 0 && st.peek().value > arr[i]) ans.add(st.peek().index);
@@ -247,8 +250,7 @@ public class CustomStack {
         }
     }
 
-    public static void getMaxArea(int arr[]) {
-        // your code here
+    public static int getMaxArea(int arr[]) {
         // NSR
         ArrayList<Integer> nsr = new ArrayList<>();
         Stack<Pair> st1 = new Stack<>();
@@ -266,12 +268,7 @@ public class CustomStack {
             st1.push(new Pair(arr[i], i));
         }
         Collections.reverse(nsr);
-        // Print NSR
-        // System.out.println("NSR...");
-        // for(int i=0; i<nsr.size(); i++){
-        //     System.out.print(nsr.get(i)+" ");
-        // }
-        
+
         // NSL
         ArrayList<Integer> nsl = new ArrayList<>();
         Stack<Pair> st2 = new Stack<>();
@@ -289,12 +286,6 @@ public class CustomStack {
             st2.push(new Pair(arr[i], i));
         }
 
-        // Print NSL
-        // System.out.println("\nNSL...");
-        // for(int i=0; i<nsl.size(); i++){
-        //     System.out.print(nsl.get(i)+" ");
-        // }
-        
         ArrayList<Integer> width = new ArrayList<>();
         for(int i=0; i<nsr.size(); i++){
             width.add(nsr.get(i)-nsl.get(i)-1);
@@ -309,7 +300,7 @@ public class CustomStack {
         for(int i=1; i<area.size(); i++){
             temp = Math.max(temp, area.get(i));
         }
-        System.out.println(temp);
-        // return temp;
+        // System.out.println(temp);
+        return temp;
     }
 }
